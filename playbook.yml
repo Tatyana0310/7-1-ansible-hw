@@ -1,0 +1,20 @@
+---
+- hosts: yandex_vm
+  become: yes
+  tasks:
+
+  - name: Create a folder and unpack the archive
+    file:
+      path: /root/my_folder
+      state: directory
+
+  - name: download archive
+    get_url:
+      url:  https://www.apache.org/dyn/closer.lua/kafka/4.2.0/kafka-4.2.0-src.tgz?action=download 
+      dest: /root/kafka.tgz
+
+  - name: Unpack the archive
+    unarchive:
+      src: /root/kafka.tgz
+      dest: /root/my_folder
+      remote_src: yes

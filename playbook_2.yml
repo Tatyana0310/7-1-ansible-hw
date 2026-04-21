@@ -1,0 +1,17 @@
+---
+- name: Install and run tuned
+  hosts: yandex_vm
+  become: yes
+  
+  tasks:
+    - name: Install tuned 
+      apt:
+        name: tuned
+        state: present
+        update_cache: yes
+
+    - name: Ensure tuned service is running and enabled
+      systemd:
+        name: tuned
+        state: started
+        enabled: yes
