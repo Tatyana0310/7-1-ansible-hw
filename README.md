@@ -40,7 +40,7 @@
       remote_src: yes
  ```
 
-   ![playbook3](img/playbook3.png)   
+   ![playbook1](img/playbook1.png)   
    >Запуск плейбука
 
    ![archive](img/kafka.png)   
