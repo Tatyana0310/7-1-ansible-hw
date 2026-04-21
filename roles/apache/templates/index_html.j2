@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Server Info</title>
+</head>
+<body>
+<pre>
+
+     ИНФОРМАЦИЯ О СЕРВЕРЕ
+
+Hostname: {{ ansible_hostname }}
+CPU: {{ ansible_processor_cores }} ядер
+RAM: {{ (ansible_memtotal_mb / 1024) | round(1) }} GB
+HDD (первый диск): {{ ansible_mounts[0].size_total // (1024*1024*1024) }} GB
+IP-адрес: {{ ansible_default_ipv4.address }}
+ОС: {{ ansible_distribution }} {{ ansible_distribution_version }}
+
+</pre>
+</body>
+</html>

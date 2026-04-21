@@ -3,6 +3,8 @@
   hosts: yandex_vm
   remote_user: tata
   become: yes
+  vars:
+    greeting: "Добро пожаловать! Хорошего дня!"
   
   tasks:
     - name: Disable  MOTD scripts

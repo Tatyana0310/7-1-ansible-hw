@@ -1,0 +1,32 @@
+---
+    - name: Install apache package
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: web-html 
+      template:
+        src: index_html.j2
+        dest: /var/www/html/index.html
+      notify: restart apache2
+    
+    - name: Enabled apache2
+      systemd:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Open port 80 (if needed)
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+      ignore_errors: yes
+          
+    - name: Check website availability (HTTP 200)
+      uri:
+        url: "http://{{ ansible_default_ipv4.address }}"
+        status_code: 200
+      register: website_status
+      ignore_errors: no  
